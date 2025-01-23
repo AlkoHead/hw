@@ -69,7 +69,28 @@ sudo systemctl restart jenkins.service
 В качестве ответа пришлите скриншоты с настройками проекта и результатами выполнения сборки.
 
 ### Решение 2
-
+![pip_script](img/pip_declarative.JPG)
+![pip_status](img/pip_status.JPG)
+```
+pipeline {
+ agent any
+ stages {
+  stage('Git') {
+   steps {git 'https://github.com/AlkoHead/sdvps-materials.git'}
+  }
+  stage('Test') {
+   steps {
+    sh '/usr/local/go/bin/go test .'
+   }
+  }
+  stage('Build') {
+   steps {
+    sh 'docker build . -t ubuntu-bionic:8082/hello-world:v$BUILD_NUMBER'
+   }
+  }
+ }
+}
+```
 ---
 
 ### Задание 3
