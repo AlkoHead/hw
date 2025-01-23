@@ -49,6 +49,14 @@ $ export PATH=$PATH:/usr/local/go/bin
 ![git01](img/git01.JPG)
 ![step_shell](img/step_shell.JPG)
 ![result01](img/result01.JPG)
+
+**К информации**
+Со всем, с чем работает jenkins, должно быть установлено заранее(go, docker)  
+Необходио дать права пользователю jenkins:
+```bash
+$ sudo usermod -aG docker jenkins
+$ sudo systemctl restart jenkins.service
+```
 ---
 
 ### Задание 2
@@ -59,6 +67,8 @@ $ export PATH=$PATH:/usr/local/go/bin
 2. Перепишите сборку из задания 1 на declarative в виде кода.
 
 В качестве ответа пришлите скриншоты с настройками проекта и результатами выполнения сборки.
+
+### Решение 2
 
 ---
 
