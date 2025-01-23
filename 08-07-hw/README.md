@@ -19,27 +19,27 @@
 1. Установка jenkins
 
 ```bash
-$ sudo apt update && sudo apt upgrade -y
-$ sudo apt install fontconfig openjdk-17-jre
-$ sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+sudo apt update && sudo apt upgrade -y
+sudo apt install fontconfig openjdk-17-jre
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
   https://pkg.jenkins.io/debian/jenkins.io-2023.key
-$ echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
   https://pkg.jenkins.io/debian binary/ | sudo tee \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
-$ sudo apt update
-$ sudo apt install jenkins
-$ sudo systemctl enable jenkins
-$ sudo systemctl start jenkins
-$ sudo systemctl status jenkins
+sudo apt update
+sudo apt install jenkins
+sudo systemctl enable jenkins
+sudo systemctl start jenkins
+sudo systemctl status jenkins
 ```
 ![status](img/status.JPG)
 
 Подключение ip:8080  
 2. Установка golang  
 ```bash
-$ wget https://go.dev/dl/go1.23.5.linux-amd64.tar.gz
-$ sudo rm -rf /usr/local/go && sudo tar -C /usr/local/ -xzf go1.23.5.linux-amd64.tar.gz
-$ export PATH=$PATH:/usr/local/go/bin
+wget https://go.dev/dl/go1.23.5.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local/ -xzf go1.23.5.linux-amd64.tar.gz
+export PATH=$PATH:/usr/local/go/bin
 ```
 ![go](img/go_version.JPG)
 
@@ -54,8 +54,8 @@ $ export PATH=$PATH:/usr/local/go/bin
 Со всем, с чем работает jenkins, должно быть установлено заранее(go, docker)  
 Необходио дать права пользователю jenkins:
 ```bash
-$ sudo usermod -aG docker jenkins
-$ sudo systemctl restart jenkins.service
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins.service
 ```
 ---
 
