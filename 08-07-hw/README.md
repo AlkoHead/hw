@@ -11,7 +11,7 @@
 1. Установите себе jenkins по инструкции из лекции или любым другим способом из официальной документации. Использовать Docker в этом задании нежелательно.
 2. Установите на машину с jenkins [golang](https://golang.org/doc/install).
 3. Используя свой аккаунт на GitHub, сделайте себе форк [репозитория](https://github.com/netology-code/sdvps-materials.git). В этом же репозитории находится [дополнительный материал для выполнения ДЗ](https://github.com/netology-code/sdvps-materials/blob/main/CICD/8.2-hw.md).
-3. Создайте в jenkins Freestyle Project, подключите получившийся репозиторий к нему и произведите запуск тестов и сборку проекта ```go test .``` и  ```docker build .```.
+4. Создайте в jenkins Freestyle Project, подключите получившийся репозиторий к нему и произведите запуск тестов и сборку проекта ```go test .``` и  ```docker build .```.
 
 В качестве ответа пришлите скриншоты с настройками проекта и результатами выполнения сборки.
 
@@ -19,24 +19,36 @@
 1. Установка jenkins
 
 ```bash
-sudo apt update && sudo apt upgrade -y
-sudo apt install fontconfig openjdk-17-jre
-sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+$ sudo apt update && sudo apt upgrade -y
+$ sudo apt install fontconfig openjdk-17-jre
+$ sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
   https://pkg.jenkins.io/debian/jenkins.io-2023.key
-echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+$ echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
   https://pkg.jenkins.io/debian binary/ | sudo tee \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
-sudo apt update
-sudo apt install jenkins
-sudo systemctl enable jenkins
-sudo systemctl start jenkins
-sudo systemctl status jenkins
+$ sudo apt update
+$ sudo apt install jenkins
+$ sudo systemctl enable jenkins
+$ sudo systemctl start jenkins
+$ sudo systemctl status jenkins
 ```
 ![status](img/status.JPG)
 
 Подключение ip:8080  
+2. Установка golang  
+```bash
+$ wget https://go.dev/dl/go1.23.5.linux-amd64.tar.gz
+$ sudo rm -rf /usr/local/go && sudo tar -C /usr/local/ -xzf go1.23.5.linux-amd64.tar.gz
+$ export PATH=$PATH:/usr/local/go/bin
+```
+![go](img/go_version.JPG)
 
-
+3. fork
+![fork](img/fork.JPG)
+4. Создайте в jenkins Freestyle Project, подключите получившийся репозиторий к нему и произведите запуск тестов и сборку проекта ```go test .``` и  ```docker build .```.  
+![git01](img/git01.JPG)
+![step_shell](img/step_shell.JPG)
+![result01](img/result01.JPG)
 ---
 
 ### Задание 2
