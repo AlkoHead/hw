@@ -121,6 +121,38 @@ docker exec -t nexus bash -c 'cat /nexus-data/admin.password && echo'
 ![install_nexus](img/install_nexus.JPG)
 ![create_repo](img/create_repository.JPG)
 
+Код pipeline
+```
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scmGit(branches: [[name: 'main']], 
+                                userRemoteConfigs: [[url: 'https://github.com/AlkoHead/sdvps-materials.git']])
+            }
+        }
+
+
+  stage('Test') {
+   steps {
+    sh '/usr/local/go/bin/go test .'
+   }
+  }
+  stage('Build') {
+   steps {
+    sh '/usr/local/go/bin/go build -a -installsuffix nocgo -o /tmp/hw_08_02 .'
+   }
+  }
+  stage('Push') {
+   steps {
+    sh 'curl -u admin:12345 http://192.168.1.45:8081/repository/hw_08_02/ --upload-file /tmp/hw_08_02 -v'   }
+  }
+ }
+}
+```
+![jen_to_nesux](img/jenkins_to_nexis.JPG)
+![nexus_create_file](img/nexus_create_file.JPG)
 
 
 ---
