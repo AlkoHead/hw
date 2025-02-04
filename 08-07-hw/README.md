@@ -98,11 +98,30 @@ pipeline {
 **Что нужно сделать:**
 
 1. Установите на машину Nexus.
-1. Создайте raw-hosted репозиторий.
-1. Измените pipeline так, чтобы вместо Docker-образа собирался бинарный go-файл. Команду можно скопировать из Dockerfile.
-1. Загрузите файл в репозиторий с помощью jenkins.
+2. Создайте raw-hosted репозиторий.
+3. Измените pipeline так, чтобы вместо Docker-образа собирался бинарный go-файл. Команду можно скопировать из Dockerfile.
+4. Загрузите файл в репозиторий с помощью jenkins.
 
 В качестве ответа пришлите скриншоты с настройками проекта и результатами выполнения сборки.
+
+### Решение 3
+
+Надо установить предварительно Docker
+
+```bash
+docker run -d -p 8081:8081 --name nexus -e INSTALL4J_ADD_VM_PARAMS="-Xms2703m -Xmx2703m -XX:MaxDirectMemorySize=2703m" sonatype/nexus3
+```
+
+Повле входа на ip-сервера:8081 в панеле предлагается забрать пароль для входа.
+
+```bash
+docker exec -t nexus bash -c 'cat /nexus-data/admin.password && echo'
+```
+
+![install_nexus](img/install_nexus.JPG)
+![create_repo](img/create_repository.JPG)
+
+
 
 ---
 ## Дополнительные задания* (со звёздочкой)
